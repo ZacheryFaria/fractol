@@ -6,7 +6,7 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/28 15:29:32 by zfaria            #+#    #+#             */
-/*   Updated: 2019/04/02 14:59:45 by zfaria           ###   ########.fr       */
+/*   Updated: 2019/04/02 15:22:03 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	process_args(int argc, char **argv, t_mlx *mlx)
 {
 	int i;
 
-	(void)argv;
 	if (argc < 2)
 		die("usage: ./fractol <fractal>");
 	i = 0;
@@ -36,6 +35,8 @@ void	process_args(int argc, char **argv, t_mlx *mlx)
 				mlx->f = &julia_run;
 			else if (ft_strcmp("mandelbrot", argv[i]) == 0)
 				mlx->f = &mandelbrot_run;
+			else if (ft_strcmp("burningship", argv[i]) == 0)
+				mlx->f = &burningship_run;
 		}
 	}
 	if (mlx->threads <= 0)

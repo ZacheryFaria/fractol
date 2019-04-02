@@ -6,7 +6,7 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/31 09:41:55 by zfaria            #+#    #+#             */
-/*   Updated: 2019/04/02 14:59:17 by zfaria           ###   ########.fr       */
+/*   Updated: 2019/04/02 15:17:25 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ t_coor	g_rand2[7];
 
 void			*julia_run(void *args);
 void			*mandelbrot_run(void *args);
+void			*burningship_run(void *args);
 
 int				event_key(int keycode, void *param);
 int				event_close(void);
