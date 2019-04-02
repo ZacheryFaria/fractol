@@ -6,7 +6,7 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/31 09:41:55 by zfaria            #+#    #+#             */
-/*   Updated: 2019/04/01 17:37:45 by zfaria           ###   ########.fr       */
+/*   Updated: 2019/04/01 21:18:53 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct	s_mlx
 	t_coor		mouse_c;
 	int			update;
 	int			threads;
+	t_coor		*c;
 }				t_mlx;
 
 typedef	struct	s_args
@@ -59,7 +60,7 @@ typedef struct	s_dispatch
 	void		(*func)(t_mlx *mlx);
 }				t_dispatch;
 
-#define X_SCALE (t_coor){-1.75, 1.75, 0}
+#define X_SCALE (t_coor){-1.0, 1.0, 0}
 #define Y_SCALE (t_coor){-1.0, 1.0, 0}
 
 void			*julia_run(void *args);
@@ -70,6 +71,7 @@ int				event_mouse(int x, int y, void *ptr);
 int				fdf_loop(void *ptr);
 int				event_mouse_pressed(int keycode, int x, int y, void *ptr);
 int				event_mouse_released(int keycode, int x, int y, void *ptr);
+int				julia_mouse_move(int x, int y, void *ptr);
 
 int				get_color(t_coor start, t_coor end, t_coor current, t_coor delta);
 
@@ -80,7 +82,7 @@ void			image_set_pixel(t_mlx *mlx, t_coor *vec, int color);
 void			image_plot_line(t_mlx *mlx, t_coor v1, t_coor v2, t_coor orig);
 int				get_light(int start, int end, double percent);
 
-t_coor			*new_coor(int x, int y, int color);
+t_coor			*new_coor(double x, double y, int color);
 
 t_list			*read_file(char *str, int *len);
 char			*basename(char *s);

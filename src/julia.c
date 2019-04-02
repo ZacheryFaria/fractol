@@ -6,7 +6,7 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 13:51:14 by zfaria            #+#    #+#             */
-/*   Updated: 2019/04/01 19:12:47 by zfaria           ###   ########.fr       */
+/*   Updated: 2019/04/01 21:47:13 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ int		calc_pixel(t_coor *coord, t_coor c, double zoom)
 	double	zx;
 	double	zy;
 	double	temp;
-
+	(void)zoom;
 	itr = 0;
-	zx = coord->x / zoom;
-	zy = coord->y / zoom;
+	zx = coord->x;
+	zy = coord->y;
 	while (itr < MAX_ITR && zx * zx + zy * zy < 4)
 	{
 		temp = zx * zx - zy * zy;
@@ -51,9 +51,9 @@ void	*julia_run(void *ta)
 		while (x < mlx->width)
 		{
 			t_coor p;
-			p.x = scale(x + (mlx->origin->x * mlx->zoom), X_SCALE, (t_coor){0, mlx->width - 1, 0});
-			p.y = scale(y + (mlx->origin->y * mlx->zoom), Y_SCALE, (t_coor){0, mlx->height - 1, 0});
-			int res = calc_pixel(&p, (t_coor){-0.7, 0.27015, 0}, mlx->zoom);
+			p.x = x * mlx->zoom + mlx->origin->x;
+			p.y = y * mlx->zoom + mlx->origin->y;
+			int res = calc_pixel(&p, *mlx->c, mlx->zoom);
 			if (res == MAX_ITR)
 				image_set_pixel(mlx, &(t_coor){x, y, 0}, BLACK);
 			else

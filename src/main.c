@@ -6,7 +6,7 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/28 15:29:32 by zfaria            #+#    #+#             */
-/*   Updated: 2019/04/01 17:55:12 by zfaria           ###   ########.fr       */
+/*   Updated: 2019/04/01 21:54:28 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ void	bind_event(t_mlx *mlx)
 	mlx_hook(mlx->win, 17, 1L << 17, event_close, mlx);
 	mlx_hook(mlx->win, 6, 1L << 17, event_mouse, mlx);
 	mlx_hook(mlx->win, 4, 1L << 17, event_mouse_pressed, mlx);
-	mlx_hook(mlx->win, 5, 1L << 17, event_mouse_released, mlx);
 	mlx_loop_hook(mlx->mlx, fdf_loop, mlx);
+	mlx_hook(mlx->win, 6, 0, julia_mouse_move, mlx);
 }
 
 int		main(int argc, char **argv)
@@ -50,10 +50,11 @@ int		main(int argc, char **argv)
 
 	mlx = malloc(sizeof(t_mlx));
 	process_args(argc, argv, mlx);
-	mlx->origin = &(t_coor){0, 0, 0};
-	mlx->zoom = 1;
+	mlx->origin = &(t_coor){-2, -2, 0};
+	mlx->zoom = .005;
 	mlx->height = 800;
 	mlx->width = 800;
+	mlx->c = new_coor(-.5, .5, 0);
 	mlx->mlx = mlx_init();
 	mlx->win = mlx_new_window(mlx->mlx, mlx->width, mlx->height, "fractol");
 	mlx->img = image_new(mlx);
