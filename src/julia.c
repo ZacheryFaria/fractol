@@ -6,7 +6,7 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 13:51:14 by zfaria            #+#    #+#             */
-/*   Updated: 2019/04/01 17:43:18 by zfaria           ###   ########.fr       */
+/*   Updated: 2019/04/01 19:12:47 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ void	*julia_run(void *ta)
 		while (x < mlx->width)
 		{
 			t_coor p;
-			p.x = scale(x + mlx->origin->x, X_SCALE, (t_coor){0, mlx->width - 1, 0});
-			p.y = scale(y + mlx->origin->y, Y_SCALE, (t_coor){0, mlx->height - 1, 0});
+			p.x = scale(x + (mlx->origin->x * mlx->zoom), X_SCALE, (t_coor){0, mlx->width - 1, 0});
+			p.y = scale(y + (mlx->origin->y * mlx->zoom), Y_SCALE, (t_coor){0, mlx->height - 1, 0});
 			int res = calc_pixel(&p, (t_coor){-0.7, 0.27015, 0}, mlx->zoom);
 			if (res == MAX_ITR)
 				image_set_pixel(mlx, &(t_coor){x, y, 0}, BLACK);

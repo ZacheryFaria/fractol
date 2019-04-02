@@ -6,7 +6,7 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/31 10:08:56 by zfaria            #+#    #+#             */
-/*   Updated: 2019/04/01 17:43:52 by zfaria           ###   ########.fr       */
+/*   Updated: 2019/04/01 19:13:18 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include <mlx.h>
 #include <stdlib.h>
 #include <fractol.h>
+
+#define TRANS 5
 
 int		event_key(int keycode, void *param)
 {
@@ -26,13 +28,13 @@ int		event_key(int keycode, void *param)
 		exit(0);
 	}
 	if (keycode == 13)
-		mlx->origin->y += 5;
+		mlx->origin->y += TRANS / mlx->zoom;
 	if (keycode == 1)
-		mlx->origin->y -= 5;
+		mlx->origin->y -= TRANS / mlx->zoom;
 	if (keycode == 0)
-		mlx->origin->x += 5;
+		mlx->origin->x += TRANS / mlx->zoom;
 	if (keycode == 2)
-		mlx->origin->x -= 5;
+		mlx->origin->x -= TRANS / mlx->zoom;
 	if (keycode == 24)
 		mlx->zoom *= 1.1;
 	if (keycode == 27)
