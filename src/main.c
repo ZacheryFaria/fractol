@@ -6,7 +6,7 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/28 15:29:32 by zfaria            #+#    #+#             */
-/*   Updated: 2019/04/01 21:54:28 by zfaria           ###   ########.fr       */
+/*   Updated: 2019/04/02 11:22:21 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 
 void	process_args(int argc, char **argv, t_mlx *mlx)
 {
+	int i;
+
 	(void)argv;
 	if (argc < 2)
 	{
@@ -25,13 +27,10 @@ void	process_args(int argc, char **argv, t_mlx *mlx)
 		exit(0);
 	}
 	if (argc == 3)
-	{
 		mlx->threads = ft_atoi(argv[2]);
-	}
 	else
-	{
 		mlx->threads = 8;
-	}
+	i = 0;
 }
 
 void	bind_event(t_mlx *mlx)

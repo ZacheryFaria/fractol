@@ -6,7 +6,7 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/31 10:08:56 by zfaria            #+#    #+#             */
-/*   Updated: 2019/04/01 21:57:33 by zfaria           ###   ########.fr       */
+/*   Updated: 2019/04/02 11:20:51 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,12 @@ int		event_key(int keycode, void *param)
 		mlx->zoom *= 1.1;
 	if (keycode == 27)
 		mlx->zoom /= 1.1;
+	if (keycode == 115)
+	{
+		mlx->zoom = .005;
+		mlx->origin->x = -2;
+		mlx->origin->y = -2;
+	}
 	redraw(mlx);
 	return (0);
 }

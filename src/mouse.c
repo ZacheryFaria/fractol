@@ -6,7 +6,7 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 11:17:23 by zfaria            #+#    #+#             */
-/*   Updated: 2019/04/01 21:55:02 by zfaria           ###   ########.fr       */
+/*   Updated: 2019/04/02 11:23:06 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,6 @@ int	julia_mouse_move(int x, int y, void *ptr)
 	return (0);
 }
 
-int	event_mouse(int x, int y, void *ptr)
-{
-	t_mlx *mlx;
-	(void)x;
-	(void)y;
-
-	mlx = ptr;
-	return (0);
-}
-
 int	calc_zoom(int x, int y, double new_zoom, t_mlx *mlx)
 {
 	mlx->origin->y -= y * (new_zoom - mlx->zoom);
@@ -47,7 +37,7 @@ int	calc_zoom(int x, int y, double new_zoom, t_mlx *mlx)
 int	event_mouse_pressed(int button, int x, int y, void *ptr)
 {
 	t_mlx *mlx;
-	
+
 	mlx = ptr;
 	if (x <= mlx->width && x >= 0 && y >= 0 && y <= mlx->height)
 	{
