@@ -6,7 +6,7 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 12:09:55 by zfaria            #+#    #+#             */
-/*   Updated: 2019/04/02 14:28:26 by zfaria           ###   ########.fr       */
+/*   Updated: 2019/04/02 14:54:32 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ void		*mandelbrot_run(void *ta)
 			if (res == args->mlx->max_itr)
 				image_set_pixel(args->mlx, &(t_coor){x, y, 0}, BLACK);
 			else
-				image_set_pixel(args->mlx, &(t_coor){x, y, 0}, get_color(res,
-					args->mlx));
+				image_set_pixel(args->mlx, &(t_coor){x, y, 0},
+					get_color(res, args->mlx));
 		}
 		y += args->mlx->threads;
 	}

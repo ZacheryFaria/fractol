@@ -6,23 +6,12 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 12:43:47 by zfaria            #+#    #+#             */
-/*   Updated: 2019/04/02 13:43:59 by zfaria           ###   ########.fr       */
+/*   Updated: 2019/04/02 14:51:31 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <pthread.h>
 #include <fractol.h>
-
-void	*thread_draw(void *param)
-{
-	t_args	*args;
-	t_mlx	*mlx;
-
-	args = param;
-	mlx = args->mlx;
-	free(param);
-	return (0);
-}
 
 void	thread_join(pthread_t *threads, t_mlx *mlx)
 {
