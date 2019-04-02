@@ -6,7 +6,7 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/31 09:41:55 by zfaria            #+#    #+#             */
-/*   Updated: 2019/04/02 13:32:49 by zfaria           ###   ########.fr       */
+/*   Updated: 2019/04/02 14:43:05 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct	s_mlx
 	int			max_itr;
 	t_coor		*c;
 	void		*(*f)();
+	t_coor		*color;
 }				t_mlx;
 
 typedef	struct	s_args
@@ -67,6 +68,9 @@ typedef struct	s_dispatch
 # define Y_SCALE (t_coor){-1.0, 1.0, 0}
 
 t_coor	g_rainbow[7];
+t_coor	g_pink[7];
+t_coor	g_rand1[7];
+t_coor	g_rand2[7];
 
 void			*julia_run(void *args);
 void			*mandelbrot_run(void *args);
@@ -79,7 +83,7 @@ int				event_mouse_pressed(int keycode, int x, int y, void *ptr);
 int				event_mouse_released(int keycode, int x, int y, void *ptr);
 int				julia_mouse_move(int x, int y, void *ptr);
 
-int				get_color(int res, t_coor *map, t_mlx *mlx);
+int				get_color(int res, t_mlx *mlx);
 
 double			scale(double point, t_coor scale, t_coor scale2);
 

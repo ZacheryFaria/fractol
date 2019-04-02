@@ -6,7 +6,7 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 13:51:14 by zfaria            #+#    #+#             */
-/*   Updated: 2019/04/02 14:19:26 by zfaria           ###   ########.fr       */
+/*   Updated: 2019/04/02 14:28:31 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void		*julia_run(void *ta)
 				image_set_pixel(args->mlx, &(t_coor){x, y, 0}, BLACK);
 			else
 				image_set_pixel(args->mlx, &(t_coor){x, y, 0},
-					get_color(res, g_rainbow, args->mlx));
+					get_color(res, args->mlx));
 		}
 		y += args->mlx->threads;
 	}

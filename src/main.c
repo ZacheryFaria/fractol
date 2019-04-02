@@ -6,7 +6,7 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/28 15:29:32 by zfaria            #+#    #+#             */
-/*   Updated: 2019/04/02 14:20:31 by zfaria           ###   ########.fr       */
+/*   Updated: 2019/04/02 14:29:03 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ int		main(int argc, char **argv)
 	mlx->origin = &(t_coor){-2, -2, 0};
 	mlx->zoom = .005;
 	mlx->height = 800;
+	mlx->color = g_rainbow;
 	mlx->width = 800;
 	mlx->c = new_coor(-.5, .5, 0);
 	mlx->mlx = mlx_init();
