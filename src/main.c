@@ -6,7 +6,7 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/28 15:29:32 by zfaria            #+#    #+#             */
-/*   Updated: 2019/04/02 15:22:03 by zfaria           ###   ########.fr       */
+/*   Updated: 2019/04/02 15:33:54 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,14 @@
 #include <fractol.h>
 #include "colors.h"
 
+#define USAGE "usage: ./fractol <julia|burningship|mandelbrot> [-thread] [-lod]"
+
 void	process_args(int argc, char **argv, t_mlx *mlx)
 {
 	int i;
 
 	if (argc < 2)
-		die("usage: ./fractol <fractal>");
+		die(USAGE);
 	i = 0;
 	while (++i < argc)
 	{
@@ -60,9 +62,10 @@ int		main(int argc, char **argv)
 
 	mlx = malloc(sizeof(t_mlx));
 	mlx->max_itr = 255;
+	mlx->f = 0;
 	process_args(argc, argv, mlx);
 	if (mlx->f == 0)
-		die("No fractal found");
+		die(USAGE);
 	mlx->origin = &(t_coor){-2, -2, 0};
 	mlx->zoom = .005;
 	mlx->height = 800;
