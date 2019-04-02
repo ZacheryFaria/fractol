@@ -6,7 +6,7 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/31 09:41:55 by zfaria            #+#    #+#             */
-/*   Updated: 2019/04/02 13:01:14 by zfaria           ###   ########.fr       */
+/*   Updated: 2019/04/02 13:32:49 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <libft.h>
 # include <math.h>
+# include <colors.h>
 
 typedef struct	s_image
 {
@@ -65,6 +66,8 @@ typedef struct	s_dispatch
 # define X_SCALE (t_coor){-1.0, 1.0, 0}
 # define Y_SCALE (t_coor){-1.0, 1.0, 0}
 
+t_coor	g_rainbow[7];
+
 void			*julia_run(void *args);
 void			*mandelbrot_run(void *args);
 
@@ -76,7 +79,7 @@ int				event_mouse_pressed(int keycode, int x, int y, void *ptr);
 int				event_mouse_released(int keycode, int x, int y, void *ptr);
 int				julia_mouse_move(int x, int y, void *ptr);
 
-int				get_color(t_coor start, t_coor end, t_coor current, t_coor d);
+int				get_color(int res, t_coor *map, t_mlx *mlx);
 
 double			scale(double point, t_coor scale, t_coor scale2);
 

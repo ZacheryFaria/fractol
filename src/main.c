@@ -6,7 +6,7 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/28 15:29:32 by zfaria            #+#    #+#             */
-/*   Updated: 2019/04/02 13:10:57 by zfaria           ###   ########.fr       */
+/*   Updated: 2019/04/02 14:20:31 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,24 +23,25 @@ void	process_args(int argc, char **argv, t_mlx *mlx)
 	(void)argv;
 	if (argc < 2)
 		die("usage: ./fractol <fractal>");
-	i = 1;
-	while (i < argc)
+	i = 0;
+	while (++i < argc)
 	{
 		if (ft_strncmp("-thread=", argv[i], 8) == 0)
 			mlx->threads = ft_atoi(argv[i] + 8);
+		else if (ft_strncmp("-lod=", argv[i], 5) == 0)
+			mlx->max_itr = ft_atoi(argv[i] + 5);
 		else
 		{
 			if (ft_strcmp("julia", argv[i]) == 0)
 				mlx->f = &julia_run;
 			else if (ft_strcmp("mandelbrot", argv[i]) == 0)
 				mlx->f = &mandelbrot_run;
-			else
-				die("Need fractal name. None found");
 		}
-		i++;
 	}
 	if (mlx->threads <= 0)
 		mlx->threads = 8;
+	if (mlx->max_itr <= 0)
+		mlx->max_itr = 255;
 }
 
 void	bind_event(t_mlx *mlx)
@@ -57,14 +58,16 @@ int		main(int argc, char **argv)
 	t_mlx	*mlx;
 
 	mlx = malloc(sizeof(t_mlx));
+	mlx->max_itr = 255;
 	process_args(argc, argv, mlx);
+	if (mlx->f == 0)
+		die("No fractal found");
 	mlx->origin = &(t_coor){-2, -2, 0};
 	mlx->zoom = .005;
 	mlx->height = 800;
 	mlx->width = 800;
 	mlx->c = new_coor(-.5, .5, 0);
 	mlx->mlx = mlx_init();
-	mlx->max_itr = 255;
 	mlx->win = mlx_new_window(mlx->mlx, mlx->width, mlx->height, "fractol");
 	mlx->img = image_new(mlx);
 	bind_event(mlx);
