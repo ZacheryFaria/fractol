@@ -6,7 +6,7 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/28 15:29:32 by zfaria            #+#    #+#             */
-/*   Updated: 2019/04/01 17:36:30 by zfaria           ###   ########.fr       */
+/*   Updated: 2019/04/01 17:55:12 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ int		main(int argc, char **argv)
 	process_args(argc, argv, mlx);
 	mlx->origin = &(t_coor){0, 0, 0};
 	mlx->zoom = 1;
-	mlx->height = 1080;
-	mlx->width = 1920;
+	mlx->height = 800;
+	mlx->width = 800;
 	mlx->mlx = mlx_init();
 	mlx->win = mlx_new_window(mlx->mlx, mlx->width, mlx->height, "fractol");
 	mlx->img = image_new(mlx);
