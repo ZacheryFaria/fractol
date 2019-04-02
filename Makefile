@@ -1,5 +1,5 @@
 CC=clang
-CFLAGS=-Werror -Wextra -Wall -g -Ilibft -I. -Imlx -Iincludes -Ofast -finline-functions -march=native -pthread
+CFLAGS=-Werror -Wextra -Wall -g -Ilibft -I. -Imlx -Iincludes -Ofast -march=native -pthread
 LFLAGS=-L libft/ -lft -L mlx/ -lmlx -framework OpenGL -framework AppKit -pthread 
 NAME=fractol
 SRC=$(wildcard src/*)

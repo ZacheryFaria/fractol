@@ -6,7 +6,7 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/31 09:41:55 by zfaria            #+#    #+#             */
-/*   Updated: 2019/04/02 11:22:47 by zfaria           ###   ########.fr       */
+/*   Updated: 2019/04/02 13:01:14 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,9 @@ typedef struct	s_mlx
 	t_coor		mouse_c;
 	int			update;
 	int			threads;
+	int			max_itr;
 	t_coor		*c;
+	void		*(*f)();
 }				t_mlx;
 
 typedef	struct	s_args
@@ -64,6 +66,7 @@ typedef struct	s_dispatch
 # define Y_SCALE (t_coor){-1.0, 1.0, 0}
 
 void			*julia_run(void *args);
+void			*mandelbrot_run(void *args);
 
 int				event_key(int keycode, void *param);
 int				event_close(void);

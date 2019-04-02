@@ -6,26 +6,24 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 13:51:14 by zfaria            #+#    #+#             */
-/*   Updated: 2019/04/01 21:47:13 by zfaria           ###   ########.fr       */
+/*   Updated: 2019/04/02 13:10:16 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fractol.h>
 #include <colors.h>
 
-#define MAX_ITR 255
-
-int		calc_pixel(t_coor *coord, t_coor c, double zoom)
+static int	calc_pixel(t_coor *coord, t_coor c, int max_itr)
 {
 	int		itr;
 	double	zx;
 	double	zy;
 	double	temp;
-	(void)zoom;
+
 	itr = 0;
 	zx = coord->x;
 	zy = coord->y;
-	while (itr < MAX_ITR && zx * zx + zy * zy < 4)
+	while (itr < max_itr && zx * zx + zy * zy < 4)
 	{
 		temp = zx * zx - zy * zy;
         zy = 2 * zx * zy + c.y;
@@ -35,7 +33,7 @@ int		calc_pixel(t_coor *coord, t_coor c, double zoom)
 	return (itr);
 }
 
-void	*julia_run(void *ta)
+void		*julia_run(void *ta)
 {
 	int		y;
 	int		x;
@@ -53,12 +51,12 @@ void	*julia_run(void *ta)
 			t_coor p;
 			p.x = x * mlx->zoom + mlx->origin->x;
 			p.y = y * mlx->zoom + mlx->origin->y;
-			int res = calc_pixel(&p, *mlx->c, mlx->zoom);
-			if (res == MAX_ITR)
+			int res = calc_pixel(&p, *mlx->c, mlx->max_itr);
+			if (res == mlx->max_itr)
 				image_set_pixel(mlx, &(t_coor){x, y, 0}, BLACK);
 			else
 			{
-				double s = scale(res, (t_coor){0.0, 1.0, 0}, (t_coor){0, MAX_ITR, 0});
+				double s = scale(res, (t_coor){0.0, 1.0, 0}, (t_coor){0, mlx->max_itr, 0});
 				if (s > 0.8)
 				{
 					int color = get_color((t_coor){1.0, 0, RED}, (t_coor){.8, 0, ORANGE}, (t_coor){s, 0, 0}, (t_coor){1, 0, 0});
@@ -90,14 +88,12 @@ void	*julia_run(void *ta)
 					image_set_pixel(mlx, &(t_coor){x, y, 0}, color);
 				}
 				else
-				{
 					image_set_pixel(mlx, &(t_coor){x, y, 0}, GRAY);
-				}
-				
 			}
 			x++;
 		}
 		y += mlx->threads;
 	}
+	free(ta);
 	return (0);
 }

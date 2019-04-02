@@ -6,7 +6,7 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 11:17:23 by zfaria            #+#    #+#             */
-/*   Updated: 2019/04/02 11:23:06 by zfaria           ###   ########.fr       */
+/*   Updated: 2019/04/02 13:06:59 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ int	julia_mouse_move(int x, int y, void *ptr)
 	t_mlx	*mlx;
 
 	mlx = ptr;
-	(void)x;
-	(void)y;
 	mlx->c->x = (x) * 0.001;
 	mlx->c->y = (y) * 0.001;
 	redraw(mlx);
