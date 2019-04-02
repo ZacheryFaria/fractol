@@ -6,7 +6,7 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/31 10:08:56 by zfaria            #+#    #+#             */
-/*   Updated: 2019/04/01 14:34:58 by zfaria           ###   ########.fr       */
+/*   Updated: 2019/04/01 17:32:30 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 #include <mlx.h>
 #include <stdlib.h>
 #include <fractol.h>
-
-
 
 int		event_key(int keycode, void *param)
 {
@@ -27,6 +25,15 @@ int		event_key(int keycode, void *param)
 		mlx_destroy_window(((t_mlx *)param)->mlx, ((t_mlx *)param)->win);
 		exit(0);
 	}
+	if (keycode == 13)
+		mlx->origin->y += 5;
+	if (keycode == 1)
+		mlx->origin->y -= 5;
+	if (keycode == 0)
+		mlx->origin->x += 5;
+	if (keycode == 2)
+		mlx->origin->x -= 5;
+	redraw(mlx);
 	return (0);
 }
 

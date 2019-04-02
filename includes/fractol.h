@@ -6,7 +6,7 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/31 09:41:55 by zfaria            #+#    #+#             */
-/*   Updated: 2019/04/01 17:21:17 by zfaria           ###   ########.fr       */
+/*   Updated: 2019/04/01 17:37:45 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ typedef struct	s_dispatch
 #define X_SCALE (t_coor){-1.75, 1.75, 0}
 #define Y_SCALE (t_coor){-1.0, 1.0, 0}
 
-void			julia_run(t_mlx *mlx);
+void			*julia_run(void *args);
 
 int				event_key(int keycode, void *param);
 int				event_close(void);

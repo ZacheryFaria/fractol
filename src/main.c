@@ -6,7 +6,7 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/28 15:29:32 by zfaria            #+#    #+#             */
-/*   Updated: 2019/04/01 15:39:15 by zfaria           ###   ########.fr       */
+/*   Updated: 2019/04/01 17:36:30 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	process_args(int argc, char **argv, t_mlx *mlx)
 	}
 	else
 	{
-		mlx->threads = 2;
+		mlx->threads = 8;
 	}
 }
 
@@ -58,7 +58,7 @@ int		main(int argc, char **argv)
 	mlx->win = mlx_new_window(mlx->mlx, mlx->width, mlx->height, "fractol");
 	mlx->img = image_new(mlx);
 	bind_event(mlx);
-	julia_run(mlx);
+	startup_threads(mlx);
 	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img->img, 0, 0);
 	mlx_loop(mlx->mlx);
 }

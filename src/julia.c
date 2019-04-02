@@ -6,14 +6,14 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 13:51:14 by zfaria            #+#    #+#             */
-/*   Updated: 2019/04/01 17:21:25 by zfaria           ###   ########.fr       */
+/*   Updated: 2019/04/01 17:37:54 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fractol.h>
 #include <colors.h>
 
-#define MAX_ITR 500
+#define MAX_ITR 255
 
 int		calc_pixel(t_coor *coord, t_coor c)
 {
@@ -35,20 +35,24 @@ int		calc_pixel(t_coor *coord, t_coor c)
 	return (itr);
 }
 
-void	julia_run(t_mlx *mlx)
+void	*julia_run(void *ta)
 {
-	int y;
-	int x;
-	y = 0;
-	x = 0;
+	int		y;
+	int		x;
+	t_args	*args;
+	t_mlx	*mlx;
+	
+	args = ta;
+	mlx = args->mlx;
+	y = args->start;
 	while (y < mlx->height)
 	{
 		x = 0;
 		while (x < mlx->width)
 		{
 			t_coor p;
-			p.x = scale(x, X_SCALE, (t_coor){0, mlx->width - 1, 0});
-			p.y = scale(y, Y_SCALE, (t_coor){0, mlx->height - 1, 0});
+			p.x = scale(x + mlx->origin->x, X_SCALE, (t_coor){0, mlx->width - 1, 0});
+			p.y = scale(y + mlx->origin->y, Y_SCALE, (t_coor){0, mlx->height - 1, 0});
 			int res = calc_pixel(&p, (t_coor){-0.7, 0.27015, 0});
 			if (res == MAX_ITR)
 				image_set_pixel(mlx, &(t_coor){x, y, 0}, BLACK);
@@ -93,6 +97,7 @@ void	julia_run(t_mlx *mlx)
 			}
 			x++;
 		}
-		y++;
+		y += mlx->threads;
 	}
+	return (0);
 }

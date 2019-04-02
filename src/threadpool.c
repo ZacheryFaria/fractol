@@ -6,7 +6,7 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 12:43:47 by zfaria            #+#    #+#             */
-/*   Updated: 2019/04/01 13:52:15 by zfaria           ###   ########.fr       */
+/*   Updated: 2019/04/01 17:39:59 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	startup_threads(t_mlx *mlx)
 		args = malloc(sizeof(t_args));
 		args->mlx = mlx;
 		args->start = i;
-		pthread_create(&threads[i], NULL, thread_draw, args);
+		pthread_create(&threads[i], NULL, julia_run, args);
 		i++;
 	}
 	thread_join(threads, mlx);
